@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draven | Product</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="index.html#home" class="nav-logo">
+                <h2 class="logo-text">Draven</h2>
+            </a>
+            <ul class="nav-menu">
+                <li>
+                    <button id="menu-close-button" class="fas fa-times" aria-label="Close menu"></button>
+                </li>
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="index.html#products" class="nav-link">Products</a></li>
+                <li class="nav-item"><a href="index.html#reviews" class="nav-link">Reviews</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contacts</a></li>
+                <li class="nav-item">
+                    <a href="checkout.html" class="nav-link">Cart (<span id="cart-count">0</span>)</a>
+                </li>
+            </ul>
+            <button id="menu-open-button" class="fas fa-bars" aria-label="Open menu"></button>
+        </nav>
+    </header>
+
+    <main class="pdp">
+        <a href="index.html#products" class="detail-back">
+            <i class="fas fa-arrow-left"></i> Back to products
+        </a>
+
+        <div class="pdp-layout">
+
+            <!-- LEFT COLUMN -->
+            <div class="pdp-left">
+                <div class="pdp-carousel">
+                    <div class="pdp-slides" id="pdp-slides"></div>
+                    <button class="pdp-arrow pdp-prev" id="pdp-prev" aria-label="Previous picture">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="pdp-arrow pdp-next" id="pdp-next" aria-label="Next picture">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="pdp-dots" id="pdp-dots"></div>
+                </div>
+
+                <section class="pdp-panel pdp-related">
+                    <h2 class="pdp-related-title">You may also like</h2>
+                    <div class="pdp-related-track" id="related-track"></div>
+                    <div class="pdp-related-controls">
+                        <div class="pdp-related-progress"><span id="related-bar"></span></div>
+                        <button class="carousel-arrow" id="related-prev" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-arrow" id="related-next" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <p class="pdp-related-text">Every piece is made to be worn loud, layered and long after midnight.</p>
+                </section>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <aside class="pdp-panel pdp-card">
+                <div class="pdp-head">
+                    <h1 class="pdp-name" id="pdp-name"></h1>
+                    <div class="pdp-stars" id="pdp-stars"></div>
+                </div>
+                <p class="pdp-price" id="pdp-price"></p>
+                <p class="pdp-desc" id="pdp-desc"></p>
+
+                <p class="pdp-label">Size</p>
+                <div class="pdp-options" id="pdp-sizes"></div>
+
+                <p class="pdp-label">Color</p>
+                <div class="pdp-options" id="pdp-colors"></div>
+
+                <p class="cart-message" id="cart-message" aria-live="polite"></p>
+
+                <button class="pdp-checkout" id="checkout">Check Out</button>
+                <button class="pdp-add" id="add-to-cart">Add to Cart</button>
+
+                <h2 class="pdp-reviews-title">Reviews</h2>
+                <div class="pdp-summary" id="pdp-summary"></div>
+                <ul class="pdp-review-list" id="pdp-reviews"></ul>
+            </aside>
+
+        </div>
+    </main>
+
+    <footer class="pdp-footer">&copy; Draven 2026</footer>
+
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script>
+      // ---------- mobile menu ----------
+      const menuOpenButton = document.querySelector("#menu-open-button");
+      const menuCloseButton = document.querySelector("#menu-close-button");
+      const closeMenu = () => document.body.classList.remove("show-mobile-menu");
+      menuOpenButton.addEventListener("click", () => document.body.classList.toggle("show-mobile-menu"));
+      menuCloseButton.addEventListener("click", closeMenu);
+
+      // ---------- find the product (?id=raven) ----------
+      const id = new URLSearchParams(window.location.search).get("id");
+      const product = products.find((p) => p.id === id);
+
+      const starIcons = (n) =>
+        [1, 2, 3, 4, 5]
+          .map((i) => `<i class="${i <= Math.round(n) ? "fa-solid" : "fa-regular"} fa-star"></i>`)
+          .join("");
+
+      if (!product) {
+        document.querySelector(".pdp").innerHTML =
+          '<a href="index.html#products" class="detail-back">&larr; Back to products</a><p id="not-found"></p>';
+        document.querySelector("#not-found").textContent =
+          'Sorry, we couldn\'t find a product with the id "' + id + '".';
+      } else {
+        document.title = product.name + " | Draven";
+
+        // ---------- text ----------
+        document.querySelector("#pdp-name").textContent = product.name;
+        document.querySelector("#pdp-price").textContent = "₱" + product.price.toLocaleString();
+        document.querySelector("#pdp-desc").textContent = product.description;
+
+        // ---------- picture carousel ----------
+        const images = product.images || [product.image, product.image, product.image, product.image];
+        const slides = document.querySelector("#pdp-slides");
+        const dotBox = document.querySelector("#pdp-dots");
+
+        slides.innerHTML = images
+          .map((src, i) => `<img src="${src}" alt="${product.alt} (view ${i + 1})">`)
+          .join("");
+        dotBox.innerHTML = images
+          .map((_, i) => `<button class="carousel-dot${i === 0 ? " active" : ""}" aria-label="Go to picture ${i + 1}"></button>`)
+          .join("");
+
+        const dots = dotBox.querySelectorAll(".carousel-dot");
+        const slideWidth = () => slides.clientWidth;
+
+        document.querySelector("#pdp-next").addEventListener("click", () => {
+          slides.scrollBy({ left: slideWidth(), behavior: "smooth" });
+        });
+        document.querySelector("#pdp-prev").addEventListener("click", () => {
+          slides.scrollBy({ left: -slideWidth(), behavior: "smooth" });
+        });
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            slides.scrollTo({ left: i * slideWidth(), behavior: "smooth" });
+          });
+        });
+        slides.addEventListener("scroll", () => {
+          const index = Math.round(slides.scrollLeft / slideWidth());
+          dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+        });
+
+        // ---------- sizes ----------
+        const sizes = product.sizes || ["XS", "S", "M", "L"];
+        document.querySelector("#pdp-sizes").innerHTML = sizes
+          .map((s) => `
+            <input type="radio" name="size" id="size-${s}" value="${s}">
+            <label for="size-${s}">${s}</label>`)
+          .join("");
+
+        // ---------- colors ----------
+        const colors = product.colors || [
+          { name: "Black", hex: "#111111" },
+          { name: "Maroon", hex: "#6b1f2a" },
+          { name: "Silver", hex: "#b9b9c0" },
+          { name: "Bone", hex: "#d9c3ab" }
+        ];
+        document.querySelector("#pdp-colors").innerHTML = colors
+          .map((c, i) => `
+            <input type="radio" name="color" id="color-${i}" value="${c.name}">
+            <label for="color-${i}" class="swatch" title="${c.name}" style="background:${c.hex}">
+              <span class="sr-only">${c.name}</span>
+            </label>`)
+          .join("");
+
+        // ---------- add to cart / check out ----------
+        const message = document.querySelector("#cart-message");
+
+        function addChosen() {
+          const size = document.querySelector('input[name="size"]:checked');
+          const color = document.querySelector('input[name="color"]:checked');
+          if (!size || !color) {
+            message.textContent = "Please pick a size and a color first.";
+            return false;
+          }
+          addToCart(product.id, size.value + " / " + color.value);
+          return true;
+        }
+
+        document.querySelector("#add-to-cart").addEventListener("click", () => {
+          if (addChosen()) message.textContent = "Added " + product.name + " to your cart.";
+        });
+
+        document.querySelector("#checkout").addEventListener("click", () => {
+          if (addChosen()) window.location.href = "checkout.html";
+        });
+
+        // ---------- reviews ----------
+        const reviews = product.reviews || [];
+        const stars = document.querySelector("#pdp-stars");
+        const summary = document.querySelector("#pdp-summary");
+        const reviewList = document.querySelector("#pdp-reviews");
+
+        if (reviews.length === 0) {
+          stars.innerHTML = starIcons(0);
+          summary.innerHTML = "<p>No reviews yet.</p>";
+        } else {
+          const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+          stars.innerHTML = starIcons(avg);
+          summary.innerHTML = `
+            <div class="pdp-summary-stars">${starIcons(avg)}</div>
+            <p>${avg.toFixed(1)} Average Rating<br>based on ${reviews.length} review${reviews.length > 1 ? "s" : ""}</p>`;
+
+          reviewList.innerHTML = reviews.map((r) => {
+            const initials = r.name.split(" ").map((w) => w[0]).join("");
+            return `
+              <li class="pdp-review">
+                <div class="pdp-review-top">
+                  <span class="reviewer-avatar">${initials}</span>
+                  <span class="reviewer-name">${r.name}</span>
+                  <span class="pdp-review-date">${r.date || ""}</span>
+                </div>
+                <div class="pdp-review-stars">${starIcons(r.rating)}</div>
+                <p class="pdp-review-text">${r.text}</p>
+              </li>`;
+          }).join("");
+        }
+
+        // ---------- "you may also like" ----------
+        const track = document.querySelector("#related-track");
+        track.innerHTML = products
+          .filter((p) => p.id !== product.id)
+          .map((p) => `
+            <a href="product.html?id=${p.id}" class="related-card">
+              <img src="${p.image}" alt="${p.alt}">
+              <p class="related-name">${p.name}</p>
+              <p class="related-price">₱${p.price.toLocaleString()}</p>
+            </a>`)
+          .join("");
+
+        const bar = document.querySelector("#related-bar");
+        function updateBar() {
+          const max = track.scrollWidth - track.clientWidth;
+          bar.style.width = (max > 0 ? (track.scrollLeft / max) * 100 : 100) + "%";
+        }
+        track.addEventListener("scroll", updateBar);
+        window.addEventListener("resize", updateBar);
+        updateBar();
+
+        const relatedStep = () => {
+          const cards = track.children;
+          return cards.length > 1
+            ? cards[1].offsetLeft - cards[0].offsetLeft
+            : track.clientWidth;
+        };
+        document.querySelector("#related-next").addEventListener("click", () => {
+          track.scrollBy({ left: relatedStep(), behavior: "smooth" });
+        });
+        document.querySelector("#related-prev").addEventListener("click", () => {
+          track.scrollBy({ left: -relatedStep(), behavior: "smooth" });
+        });
+      }
+    </script>
+</body>
+</html>

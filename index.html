@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draven</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--header/navbar-->
+    <header>
+        <nav class="navbar">
+            <a href="#home" class="nav-logo">
+                <h2 class="logo-text">Draven</h2>
+            </a>
+            <ul class="nav-menu">
+                <li>
+                    <button id="menu-close-button" class="fas fa-times" aria-label="Close menu"></button>
+                </li>
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#reviews" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Cart (<span id="cart-count">0</span>)</a>
+                </li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars" aria-label="Open menu"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!--hero-->
+        <section class="hero-section" id="home">
+            <div class="section-content">
+                <div class="hero-details">
+                    <h2 class="title">Dress like the night. Live like the dark.</h2>
+                    <p class="description">There is beauty in the macabre. At DRAVEN, we believe that style is a ritual. 
+                        We curate pieces that speak to the soul—intricate lace, flowing silhouettes, and hardware that bites back. Our clothing is more than fabric; 
+                        it’s armor for the modern romantic. Embrace the mystery. Wear the darkness.</p>
+
+                    <div class="hero-buttons">
+                        <a href="#products" class="button order-now">Order Now</a>
+                        <a href="#contact" class="button contact-us">Contact Us</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="artz/art1.png" alt="goth-image" class="goth-image">
+                </div>
+            </div>
+        </section>
+
+        <!--about-->
+        <section class="about-section" id="about">
+            <div class="section-content">
+                <div class="about-image-wrapper">
+                    <img src="artz/art1.png" alt="about" class="about-image">
+                </div>
+                <div class="about-details">
+                    <h2 class="section-title">About Draven</h2>
+                    <p class="text">We don't follow the light. We define the dark.
+
+DRAVEN was born from a simple frustration: goth fashion was either too generic, too fragile, or too hard to find in one place. We wanted a home for the ones who dress like they mean it — the lace-and-leather loyalists, the midnight romantics, the quietly defiant.
+
+So we built one.</p>
+                    <div class="social-link-list">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--products-->
+        <section class="products-section" id="products" aria-labelledby="products-title">
+            <div class="section-content">
+                <h2 class="section-title" id="products-title">Our Products</h2>
+                <ul class="products-list"></ul>
+            </div>
+        </section>
+
+
+        <!--featured-->
+        <section class="featured-section" id="featured" aria-labelledby="featured-title">
+            <div class="section-content">
+                <h2 class="section-title" id="featured-title">Featured</h2>
+
+                <div class="featured-carousel">
+                    <div class="featured-track">
+
+                        <article class="featured-card">
+                            <img src="artz/art1.png" alt="Raven Corset Top" class="featured-image">
+                            <p class="featured-text">Raven Corset Top<br>Structured black satin with steel boning.</p>
+                            <a href="#products" class="button">View</a>
+                        </article>
+
+                        <article class="featured-card">
+                            <img src="artz/art1.png" alt="Crimson Veil Cape" class="featured-image">
+                            <p class="featured-text">Crimson Veil Cape<br>Hooded maroon velvet with satin lining.</p>
+                            <a href="#products" class="button">View</a>
+                        </article>
+
+                        <article class="featured-card">
+                            <img src="artz/art1.png" alt="Thorn Lace Gloves" class="featured-image">
+                            <p class="featured-text">Thorn Lace Gloves<br>Elbow-length black lace with stretch fit.</p>
+                            <a href="#products" class="button">View</a>
+                        </article>
+
+                        <article class="featured-card">
+                            <img src="artz/art1.png" alt="Vesper Platform Boots" class="featured-image">
+                            <p class="featured-text">Vesper Platform Boots<br>Knee-high black boots with heavy buckles.</p>
+                            <a href="#products" class="button">View</a>
+                        </article>
+
+                    </div>
+
+                    <div class="carousel-controls">
+                        <button class="carousel-arrow" id="featured-prev" aria-label="Previous">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Go to item 1"></button>
+                            <button class="carousel-dot" aria-label="Go to item 2"></button>
+                            <button class="carousel-dot" aria-label="Go to item 3"></button>
+                            <button class="carousel-dot" aria-label="Go to item 4"></button>
+                        </div>
+                        <button class="carousel-arrow" id="featured-next" aria-label="Next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--gallery-->
+        <section class="gallery-section" id="gallery" aria-labelledby="gallery-title">
+            <div class="gallery-sticky">
+                <h2 class="section-title" id="gallery-title">Gallery</h2>
+
+                <div class="gallery-strip" id="gallery-strip">
+
+                    <div class="gallery-room">
+                        <div class="room-ceiling"></div>
+                        <div class="room-wall-left"></div>
+                        <div class="room-wall-back">
+                            <div class="wall-frame frame-rect frame-1">
+                                <img src="artz/art1.png" alt="Framed artwork 1">
+                            </div>
+                            <div class="wall-frame frame-rect frame-2">
+                                <img src="artz/art1.png" alt="Framed artwork 2">
+                            </div>
+                            <div class="wall-frame frame-diamond frame-3">
+                                <img src="artz/art1.png" alt="Framed artwork 3">
+                            </div>
+                            <div class="wall-frame frame-diamond frame-4">
+                                <img src="artz/art1.png" alt="Framed artwork 4">
+                            </div>
+                        </div>
+                        <div class="room-wall-right"></div>
+                        <div class="room-floor"></div>
+                    </div>
+
+                    <div class="gallery-panel">
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 1"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 2"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 3"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 4"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 5"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 6"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 7"></figure>
+                        <figure class="gallery-item"><img src="artz/art1.png" alt="Gallery picture 8"></figure>
+                    </div>
+
+                </div>
+
+                <div class="gallery-controls">
+                    <div class="gallery-progress"><span id="gallery-progress-bar"></span></div>
+                    <button class="carousel-arrow" id="gallery-prev" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-arrow" id="gallery-next" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!--reviews-->
+        <section class="reviews-section" id="reviews" aria-labelledby="reviews-title">
+            <div class="section-content">
+                <h2 class="section-title" id="reviews-title">Reviews</h2>
+
+                <ul class="reviews-list">
+
+                    <li class="review-card">
+                        <div class="review-rating" role="img" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote class="review-text">
+                            The Nocturne Dress fits perfectly and the lace is even better in person.
+                            I wore it to a gig and got compliments all night.
+                        </blockquote>
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">MR</span>
+                            <div class="reviewer-info">
+                                <p class="reviewer-name">Maria R.</p>
+                                <p class="reviewer-product">Nocturne Dress</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="review-card">
+                        <div class="review-rating" role="img" aria-label="5 out of 5 stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <blockquote class="review-text">
+                            The cape is heavy and warm and looks amazing. Shipping was quick and
+                            the packaging was beautiful.
+                        </blockquote>
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">JD</span>
+                            <div class="reviewer-info">
+                                <p class="reviewer-name">Jon D.</p>
+                                <p class="reviewer-product">Crimson Veil Cape</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="review-card">
+                        <div class="review-rating" role="img" aria-label="4 out of 5 stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                        <blockquote class="review-text">
+                            Great quality boots and comfortable for dancing. They run a little
+                            small, so I'd size up.
+                        </blockquote>
+                        <div class="reviewer">
+                            <span class="reviewer-avatar">AL</span>
+                            <div class="reviewer-info">
+                                <p class="reviewer-name">Ana L.</p>
+                                <p class="reviewer-product">Vesper Platform Boots</p>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!--footer-->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+
+            <a href="#home" class="footer-logo">DRAVEN</a>
+
+            <div class="footer-column">
+                <h3 class="footer-title">About Us</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Socials</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3 class="footer-title">Privacy</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script src="product.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
